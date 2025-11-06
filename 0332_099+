@@ -1,0 +1,30 @@
+// итеративный поиск элемента в связном списе
+#include <iostream>
+
+// Предполагаем, что структура List определена следующим образом:
+template <typename T>
+struct List {
+    T item;
+    List<T>* next;
+    List(T val) : item(val), next(nullptr) {}
+};
+
+template <typename T>
+List<T>* search_list(List<T>* l, T x) {
+    // Создаем указатель, который будет перемещаться по списку
+    List<T>* current = l;
+
+    // Пока не дошли до конца списка
+    while (current != nullptr) {
+        // Если элемент текущего узла равен искомому значению
+        if (current->item == x) {
+            // Возвращаем указатель на текущий узел
+            return current;
+        }
+        // Переходим к следующему узлу
+        current = current->next;
+    }
+
+    // Если элемент не найден, возвращаем nullptr
+    return nullptr;
+}
